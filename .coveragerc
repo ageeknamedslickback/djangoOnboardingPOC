@@ -1,8 +1,12 @@
 [run]
-show_missing=True
-branch=True
+show_missing=true
+branch=true
 source=onboarding
 omit=
     onboarding/**/migrations*
     */managers.py
     */__init__.py
+
+[report]
+exclude_also = 
+    def send_OTP

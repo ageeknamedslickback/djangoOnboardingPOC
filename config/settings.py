@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "phonenumber_field",
+    "rest_framework",
+    # TokenAuthentication
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
     "onboarding.users",
 ]
 
@@ -127,3 +131,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.MyUser"
+
+OTP_VALIDITY_SECONDS = 10
