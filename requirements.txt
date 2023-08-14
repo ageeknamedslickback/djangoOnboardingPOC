@@ -8,3 +8,4 @@ pytest-cov==4.1.0
 pytest-django==4.5.2
 tox==4.6.4
 git-changelog==2.1.0
+drf-yasg==1.21.7

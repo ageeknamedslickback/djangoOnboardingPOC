@@ -65,11 +65,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # External apps
     "phonenumber_field",
     "rest_framework",
-    # TokenAuthentication
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
+    "drf_yasg",
+    # Local apps
     "onboarding.users",
 ]
 
