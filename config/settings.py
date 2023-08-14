@@ -10,22 +10,48 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+def get_env_variable(var_name):
+    """Get the environment variable or return exception."""
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(var_name)
+        raise ImproperlyConfigured(error_msg)
+
+
+def get_bool_env(env_var, default=False):
+    """Parse 'boolean' environment variable strings."""
+    assert default is False or default is True
+    val = os.getenv(env_var)
+    import json
+
+    if val is None:
+        return default
+    try:
+        p = json.loads(val)
+        assert p is False or p is True
+        return p
+    except ValueError:
+        raise Exception("Invalid boolean config: {}".format(val))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-@!7n@u2$duu=$g6e9w&r(#aya+bx+j+r6(qgrxmhrj_r4ae6%y"
-)
+SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = get_bool_env("DEBUG", True)
 
 ALLOWED_HOSTS = []
 
