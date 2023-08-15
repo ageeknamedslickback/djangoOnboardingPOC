@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 DON'T MANUALLY EDIT THIS FILE! Check the README.
 
 <!-- insertion marker -->
+## [v1.2.0] - 2023-08-14
+
 ## [v1.1.0] - 2023-08-14
 
 ### Bug Fixes
