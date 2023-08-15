@@ -38,5 +38,8 @@ jobs:
                     push: True
                     tags: ${{ secrets.DOCKERHUB_USERNAME }}/onboarding-${{ vars.TEST_ENVIRONMENT }}:${{ env.VERSION }}
                     secrets: |
-                        SECRET_KEY: ${{ secrets.TEST_SECRET_KEY }}
-                        DEBUG: ${{ vars.TEST_DEBUG }}
+                        "SECRET_KEY=${{ secrets.TEST_SECRET_KEY }}"
+                        "DEBUG=${{ vars.TEST_DEBUG }}"
+                        "ENVIRONMENT=${{ vars.TEST_ENVIRONMENT }}"
+                        "SENTRY_DSN: ${{ secrets.TEST_SENTRY_DSN }}"
+                        "PORT: ${{ vars.TEST_PORT }}"

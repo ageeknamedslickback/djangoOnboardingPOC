@@ -37,6 +37,8 @@ in your local machine.
     export SECRET_KEY="<your secret key>"
     export DEBUG="true"
     export ENVIRONMENT="local"
+    export PORT=8000
+    export SENTRY_DSN=""
 
 5. Remember to source your environment variables
 
@@ -76,12 +78,12 @@ This assumes that you have `Docker Desktop` installed locally in your `*nix` loc
 
 1. Build the image
 
-.. code-blocks:: bash
+.. code-block:: bash
 
     $ make build
 
 2. Run the docker container
 
-.. code-blocks:: bash
+.. code-block:: bash
 
     $ make run
