@@ -21,6 +21,7 @@ jobs:
       - name: Lint and Test
         env:
           SECRET_KEY: "very-SECRET-key"
+          ENVIRONMENT: "ci"
           DEBUG: True
         run: |
           tox -r
