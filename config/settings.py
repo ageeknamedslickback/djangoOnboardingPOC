@@ -15,6 +15,8 @@ from pathlib import Path
 
 from django.core.exceptions import ImproperlyConfigured
 
+from config import RUNNING_ENVIRONMENTS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +26,7 @@ def get_env_variable(var_name):
     try:
         return os.environ[var_name]
     except KeyError:
-        error_msg = "Set the {} environment variable".format(var_name)
+        error_msg = f"Set the {var_name} environment variable"
         raise ImproperlyConfigured(error_msg)
 
 
@@ -42,6 +44,15 @@ def get_bool_env(env_var, default=False):
         return p
     except ValueError:
         raise Exception("Invalid boolean config: {}".format(val))
+
+
+def get_running_environment(var_name):
+    """Get the environment the code is running in."""
+    environment = get_env_variable(var_name)
+    if environment not in RUNNING_ENVIRONMENTS:
+        raise ImproperlyConfigured(
+            f"{environment} is not a valid running environment"
+        )
 
 
 # Quick-start development settings - unsuitable for production
@@ -152,6 +163,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -161,3 +173,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.MyUser"
 
 OTP_VALIDITY_SECONDS = 10
+
+ENVIRONMENT = get_running_environment("ENVIRONMENT")

@@ -36,19 +36,21 @@ in your local machine.
 
     export SECRET_KEY="<your secret key>"
     export DEBUG="true"
+    export ENVIRONMENT="local"
 
-5. Remeber to source your environment variables
+5. Remember to source your environment variables
 
 .. code-block:: bash
 
     $ source env.sh
 
 
-6. Run `migrations` (code uses SQLite thus no further configs) and the server
+6. Run `migrations` (code uses SQLite thus no further configs), `collectstatic` and the `runserver`
 
 .. code-block:: bash
 
     $ python3 manage.py migrate
+    $ python3 manage.py collectstatic
     $ python3 manage.py runserver
 
     Watching for file changes with StatReloader
@@ -66,3 +68,20 @@ How To Test The Project
 .. code-block:: bash
 
     $ tox -r
+
+How To Run the Project Using Docker
+===================================
+
+This assumes that you have `Docker Desktop` installed locally in your `*nix` local machine
+
+1. Build the image
+
+.. code-blocks:: bash
+
+    $ make build
+
+2. Run the docker container
+
+.. code-blocks:: bash
+
+    $ make run
