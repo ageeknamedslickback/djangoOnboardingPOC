@@ -20,8 +20,9 @@ jobs:
 
       - name: Lint and Test
         env:
-          SECRET_KEY: "very-SECRET-key"
-          ENVIRONMENT: "ci"
-          DEBUG: True
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ENVIRONMENT: ${{ vars.ENVIRONMENT }}
+          DEBUG: ${{ vars.DEBUG }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           tox -r
