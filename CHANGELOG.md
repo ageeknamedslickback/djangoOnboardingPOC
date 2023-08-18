@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 DON'T MANUALLY EDIT THIS FILE! Check the README.
 
 <!-- insertion marker -->
+## [v1.3.0] - 2023-08-18
+
+### Features
+
+- add sentry error reporting integration
+- dockerize the onboarding service
+- add DRF APIs Swagger documentation
+
+### Bug Fixes
+
+- ensure the pushed Docker images work correctly
+
 ## [v1.2.0] - 2023-08-14
 
 ## [v1.1.0] - 2023-08-14
