@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import sentry_sdk
 from django.core.exceptions import ImproperlyConfigured
+from sentry_sdk.integrations.django import DjangoIntegration
 
 from config import RUNNING_ENVIRONMENTS
 
@@ -55,8 +57,12 @@ def get_running_environment(var_name):
         )
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+sentry_sdk.init(
+    dsn=get_env_variable("SENTRY_DSN"),
+    integrations=[DjangoIntegration()],
+    send_default_pii=True,
+)
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_variable("SECRET_KEY")
