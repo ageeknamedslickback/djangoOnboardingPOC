@@ -40,6 +40,13 @@ in your local machine.
     export PORT=8000
     export SENTRY_DSN=""
 
+    # Amazon SES
+    export AWS_SES_REGION_NAME=""
+    export AWS_SES_REGION_ENDPOINT=""
+    export AWS_ACCESS_KEY_ID=""
+    export AWS_SECRET_ACCESS_KEY=""
+    export AWS_SES_FROM_EMAIL=""
+
 5. Remember to source your environment variables
 
 .. code-block:: bash

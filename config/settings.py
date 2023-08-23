@@ -181,3 +181,12 @@ AUTH_USER_MODEL = "users.MyUser"
 OTP_VALIDITY_SECONDS = 10
 
 ENVIRONMENT = get_running_environment("ENVIRONMENT")
+
+# Django SES
+EMAIL_BACKEND = "django_ses.SESBackend"
+AWS_ACCESS_KEY_ID = get_env_variable("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = get_env_variable("AWS_SECRET_ACCESS_KEY")
+AWS_SES_REGION_NAME = get_env_variable("AWS_SES_REGION_NAME")
+AWS_SES_REGION_ENDPOINT = get_env_variable("AWS_SES_REGION_ENDPOINT")
+AWS_SES_FROM_EMAIL = get_env_variable("AWS_SES_FROM_EMAIL")
+USE_SES_V2 = True
