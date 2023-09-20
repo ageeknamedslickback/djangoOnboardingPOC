@@ -2,8 +2,10 @@
 import datetime
 import math
 import random
+from typing import Any
 
 from django.contrib.auth.models import AbstractBaseUser
+from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
@@ -99,16 +101,27 @@ class OneTimePin(AbstractBaseIdentifier):
         """Send an OTP to the provided identifer."""
         match self.identifier_type:
             case "EMAIL":
-                raise NotImplementedError("Email Not Implemented")
+                subject = "codeBuddy verification OTP code"
+                message = f"Your verification OTP is {self.code}"
+                send_email(
+                    subject=subject,
+                    message=message,
+                    to=[self.identifier],
+                )
 
             case "PHONE_NUMBER":
-                raise NotImplementedError("SMS Not Implemented")
+                print("SMS sent")
+
+    def generate_and_send_OTP(self) -> None:
+        """Generate and send an OTP."""
+        OTP = self.generate_OTP()
+        self.code = OTP
+        self.send_OTP()
 
     def save(self, *args, **kwargs) -> None:
         """Override default save method."""
         if not self.__class__.objects.filter(code=self.code):
-            OTP = self.generate_OTP()
-            self.code = OTP
+            self.generate_and_send_OTP()
 
         super().save(*args, **kwargs)
 
@@ -135,3 +148,13 @@ def verify_OTP(code: str, identifier: str, identifier_type: str) -> bool:
 
     except OneTimePin.DoesNotExist:
         return False
+
+
+def send_email(message: str, to: list[str], subject: str) -> Any:
+    """Send email helper."""
+    return send_mail(
+        subject=subject,
+        message=message,
+        from_email=settings.AWS_SES_FROM_EMAIL,
+        recipient_list=to,
+    )

@@ -43,3 +43,8 @@ jobs:
                         "ENVIRONMENT=${{ vars.PROD_ENVIRONMENT }}"
                         "SENTRY_DSN: ${{ secrets.PROD_SENTRY_DSN }}"
                         "PORT: ${{ vars.PROD_PORT }}"
+                        "AWS_SES_REGION_NAME: ${{ vars.PROD_AWS_SES_REGION_NAME }}"
+                        "AWS_SES_REGION_ENDPOINT: ${{ secrets.PROD_AWS_SES_REGION_ENDPOINT }}"
+                        "AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}"
+                        "AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}"
+                        "AWS_SES_FROM_EMAIL: ${{ vars.PROD_AWS_SES_FROM_EMAIL }}"

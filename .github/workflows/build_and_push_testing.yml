@@ -43,3 +43,8 @@ jobs:
                         "ENVIRONMENT=${{ vars.TEST_ENVIRONMENT }}"
                         "SENTRY_DSN: ${{ secrets.TEST_SENTRY_DSN }}"
                         "PORT: ${{ vars.TEST_PORT }}"
+                        "AWS_SES_REGION_NAME: ${{ vars.TEST_AWS_SES_REGION_NAME }}"
+                        "AWS_SES_REGION_ENDPOINT: ${{ secrets.TEST_AWS_SES_REGION_ENDPOINT }}"
+                        "AWS_ACCESS_KEY_ID: ${{ secrets.TEST_AWS_ACCESS_KEY_ID }}"
+                        "AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_AWS_SECRET_ACCESS_KEY }}"
+                        "AWS_SES_FROM_EMAIL: ${{ vars.TEST_AWS_SES_FROM_EMAIL }}"
